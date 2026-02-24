@@ -9,8 +9,8 @@ import java.util.List;
 <span class="fc" id="L9">    private OrderStatus status = OrderStatus.CREATED;</span>
 
     public void addItem(OrderItem item) {
-<span class="pc bpc" id="L12" title="1 of 2 branches missed.">        if (status != OrderStatus.CREATED) {</span>
-<span class="nc" id="L13">            throw new IllegalStateException(&quot;Cannot add items once order is processed&quot;);</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if (status != OrderStatus.CREATED) {</span>
+<span class="fc" id="L13">            throw new IllegalStateException(&quot;Cannot add items once order is processed&quot;);</span>
         }
 <span class="fc" id="L15">        items.add(item);</span>
 <span class="fc" id="L16">    }</span>

@@ -1,8 +1,9 @@
 package com.example.shop;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class PricingServiceTest {
 
@@ -34,5 +35,11 @@ public class PricingServiceTest {
     public void testCalculateTax_PositiveSubtotal() {
         double result = pricingService.calculateTax(100.0);
         assertEquals(20.0, result, 0.01);
+    }
+
+    @Test
+    public void testCalculateTax_zero() {
+        double result = pricingService.calculateTax(0.0);
+        assertEquals(0.0, result, 0.01);
     }
 }

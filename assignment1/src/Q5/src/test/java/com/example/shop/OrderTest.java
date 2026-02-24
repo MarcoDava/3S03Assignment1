@@ -1,8 +1,9 @@
 package com.example.shop;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderTest {
 
@@ -18,6 +19,14 @@ public class OrderTest {
         OrderItem item = new OrderItem("Laptop", 1, 1000.0);
         order.addItem(item);
         assertEquals(1, order.getItems().size());
+    }
+    @Test
+    public void testAddItem_WhenOrderProcessed_ThrowsException() {
+        order.setStatus(OrderStatus.PAID);
+        OrderItem item = new OrderItem("Laptop", 1, 1000.0);
+        assertThrows(IllegalStateException.class, () -> {
+            order.addItem(item);
+        });
     }
 
     @Test

@@ -1,8 +1,9 @@
 package com.example.shop;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class DiscountServiceTest {
 
@@ -35,6 +36,16 @@ public class DiscountServiceTest {
     @Test
     public void testApplyDiscount_UnrecognizedCode() {
         double result = discountService.applyDiscount(100.0, "NOTACODE");
+        assertEquals(100.0, result, 0.01);
+    }
+    @Test
+    public void testApplyDiscount_BlackFridayCode() {
+        double result = discountService.applyDiscount(100.0, "BLACKFRIDAY");
+        assertEquals(70.0, result, 0.01);
+    }
+    @Test
+    public void testApplyDiscount_EmptyString() {
+        double result = discountService.applyDiscount(100.0, "");
         assertEquals(100.0, result, 0.01);
     }
 }
